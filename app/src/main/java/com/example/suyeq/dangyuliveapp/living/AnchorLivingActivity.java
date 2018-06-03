@@ -74,6 +74,7 @@ public class AnchorLivingActivity extends AppCompatActivity {
         });
         mLiveView = (AVRootView) findViewById(R.id.live_view);
         bottomControlView=(BottomControlView) findViewById(R.id.control_view);
+       // bottomControlView.setIsHost(true);
         bottomControlView.setOnControlListener(new BottomControlView.OnControlListener() {
             @Override
             public void onChatClick() {
@@ -191,13 +192,14 @@ public class AnchorLivingActivity extends AppCompatActivity {
                 } else if (cmd.getCmd() == ILVLiveConstants.ILVLIVE_CMD_ENTER) {
                     //用户进入直播
                     titleView.addWatcher(userProfile);
-                     //addWatcher(userProfile,roomId);
+                    //addWatcher(userProfile,roomId);
 //                    mVipEnterView.showVipEnter(userProfile);
                     Toast.makeText(AnchorLivingActivity.this, "观众已进入直播间", Toast.LENGTH_SHORT).show();
                 } else if (cmd.getCmd() == ILVLiveConstants.ILVLIVE_CMD_LEAVE) {
                     //用户离开消息
-                    titleView.removeWatcher(userProfile);
+                    //titleView.removeWatcher(userProfile);
                 }else if (cmd.getCmd() == ClassCategory.CMD_CHAT_watcherleave) {//观众离开
+                    titleView.removeWatcher(userProfile);
                     Toast.makeText(AnchorLivingActivity.this, "观众已离开", Toast.LENGTH_SHORT).show();
                     //finish();
                 }

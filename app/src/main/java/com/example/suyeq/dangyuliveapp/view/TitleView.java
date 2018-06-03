@@ -112,6 +112,8 @@ public class TitleView extends LinearLayout {
         }
     }
 
+
+
     public void addWatcher(TIMUserProfile userProfile) {
         if (userProfile != null) {
             watcherAdapter.addWatcher(userProfile);
@@ -162,7 +164,6 @@ public class TitleView extends LinearLayout {
                     }
                 }
             }
-
             notifyDataSetChanged();
         }
 

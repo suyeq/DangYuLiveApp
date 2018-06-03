@@ -33,12 +33,22 @@ public class BottomControlView extends RelativeLayout {
         findAllView();
     }
 
+    public void setIsHost(boolean isHost) {
+        if (isHost) {
+            giftView.setVisibility(INVISIBLE);
+            optionView.setVisibility(VISIBLE);
+        } else {
+            optionView.setVisibility(INVISIBLE);
+            giftView.setVisibility(VISIBLE);
+        }
+    }
+
     private void findAllView() {
         findViewById(R.id.chat).setOnClickListener(clickListener);
         findViewById(R.id.close).setOnClickListener(clickListener);
         //giftView = (ImageView) findViewById(R.id.gift);
        // giftView.setOnClickListener(clickListener);
-       // optionView = (ImageView) findViewById(R.id.option);
+        optionView = (ImageView) findViewById(R.id.option);
        // optionView.setOnClickListener(clickListener);
     }
 

@@ -206,19 +206,6 @@ public class LiveListFragment extends Fragment {
                         intent.setClass(mContext, WatchLivingActivity.class);
                         intent.putExtra("roomId", roomInfo.getRoomId());
                         intent.putExtra("hostId", roomInfo.getUserId());
-                        ILVCustomCmd customCmd = new ILVCustomCmd();
-                        customCmd.setType(ILVText.ILVTextType.eGroupMsg);
-                        customCmd.setCmd(ILVLiveConstants.ILVLIVE_CMD_ENTER);
-                        ILVLiveManager.getInstance().sendCustomCmd(customCmd, new ILiveCallBack() {
-                            @Override
-                            public void onSuccess(Object data) {
-                                Toast.makeText(mContext, "观众进入直播间", Toast.LENGTH_SHORT).show();
-                            }
-                            @Override
-                            public void onError(String module, int errCode, String errMsg) {
-
-                            }
-                        });
                         startActivity(intent);
                     }
                 });

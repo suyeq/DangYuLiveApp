@@ -17,6 +17,7 @@ import com.example.suyeq.dangyuliveapp.view.BottomControlView;
 import com.example.suyeq.dangyuliveapp.view.ChageRelayout;
 import com.example.suyeq.dangyuliveapp.view.ChatView;
 import com.example.suyeq.dangyuliveapp.view.MessageView;
+import com.example.suyeq.dangyuliveapp.view.TitleView;
 import com.tencent.TIMMessage;
 import com.tencent.TIMUserProfile;
 import com.tencent.av.sdk.AVRoomMulti;
@@ -39,6 +40,7 @@ public class WatchLivingActivity extends AppCompatActivity {
     private ChageRelayout chageRelayout;
     private MessageView messageView;
     private BarrageView barrageView;
+    private TitleView titleView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +51,7 @@ public class WatchLivingActivity extends AppCompatActivity {
     }
 
     private void joinRoom() {
-        roomId=getIntent().getIntExtra("roomId",-1);
         final String hostId=AppApplication.getApplication().getSelfProfile().getIdentifier();
-        userId=getIntent().getStringExtra("hostId");
         if(roomId<-1){
             Toast.makeText(this, "该房间号不存在！！", Toast.LENGTH_SHORT).show();
             finish();
@@ -83,23 +83,16 @@ public class WatchLivingActivity extends AppCompatActivity {
                     MessageInfo danmuInfo = MessageInfo.createDanmuInfo(content, id, userProfile.getFaceUrl(), name);
                     barrageView.addMsgInfo(danmuInfo);
                 } else if (cmd.getCmd() == ILVLiveConstants.ILVLIVE_CMD_LEAVE) {
-                    //用户离开消息
-                    //if (hostId.equals(userProfile.getIdentifier())) {
-                        //主播退出直播，
-                   //     quitLive();
-                   // } else {
-                        //观众退出直播
-                        //titleView.removeWatcher(userProfile);
-                  //  }
                     Toast.makeText(WatchLivingActivity.this, "观众已离开", Toast.LENGTH_SHORT).show();
                 } else if (cmd.getCmd() == ILVLiveConstants.ILVLIVE_CMD_ENTER) {
-                      addWatcher(userProfile,roomId,userId);
-                   // Toast.makeText(WatchLivingActivity.this, "一名观众进入直播间", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(WatchLivingActivity.this, "观众111111", Toast.LENGTH_SHORT).show();
+                    titleView.addWatcher(userProfile);
 //                    mVipEnterView.showVipEnter(userProfile);
                 }else if (cmd.getCmd() == ClassCategory.CMD_CHAT_hostleave) {//主播离开
                     Toast.makeText(WatchLivingActivity.this, "主播已下播", Toast.LENGTH_SHORT).show();
                     finish();
                 }else if (cmd.getCmd() == ClassCategory.CMD_CHAT_watcherleave) {//观众离开
+                    titleView.removeWatcher(userProfile);
                     Toast.makeText(WatchLivingActivity.this, "观众已离开", Toast.LENGTH_SHORT).show();
                     //finish();
                 }
@@ -121,7 +114,7 @@ public class WatchLivingActivity extends AppCompatActivity {
         ILVLiveManager.getInstance().joinRoom(roomId, ilvLiveRoomOption, new ILiveCallBack() {
             @Override
             public void onSuccess(Object data) {
-
+                setEnterRoom();
             }
 
             @Override
@@ -149,10 +142,9 @@ public class WatchLivingActivity extends AppCompatActivity {
 
 
     private void findAllView() {
+        roomId=getIntent().getIntExtra("roomId",-1);
+        userId=getIntent().getStringExtra("hostId");
         chageRelayout=(ChageRelayout) findViewById(R.id.chage_view);
-        if(chageRelayout==null){
-            Log.e("aaa","bbb");
-        }
         barrageView=(BarrageView) findViewById(R.id.barrage_view);
         chageRelayout.setOnSizeChangeListener(new ChageRelayout.OnSizeChangeListener() {
             @Override
@@ -166,10 +158,13 @@ public class WatchLivingActivity extends AppCompatActivity {
 
             }
         });
+        titleView=(TitleView) findViewById(R.id.title_view);
+        titleView.setHost(AppApplication.getApplication().getSelfProfile());
         mLiveView = (AVRootView) findViewById(R.id.live_view);
         ILVLiveManager.getInstance().setAvVideoView(mLiveView);
         messageView=(MessageView) findViewById(R.id.msg_view);
         bottomControlView=(BottomControlView) findViewById(R.id.control_view);
+        //bottomControlView.setIsHost(false);
         bottomControlView.setOnControlListener(new BottomControlView.OnControlListener() {
             @Override
             public void onChatClick() {
@@ -232,7 +227,21 @@ public class WatchLivingActivity extends AppCompatActivity {
             }
         });
     }
+    private void setEnterRoom(){
+        ILVCustomCmd customCmd = new ILVCustomCmd();
+        customCmd.setType(ILVText.ILVTextType.eGroupMsg);
+        customCmd.setCmd(ILVLiveConstants.ILVLIVE_CMD_ENTER);
+        ILVLiveManager.getInstance().sendCustomCmd(customCmd, new ILiveCallBack() {
+            @Override
+            public void onSuccess(Object data) {
+                Toast.makeText(WatchLivingActivity.this, "观众进入直播间", Toast.LENGTH_SHORT).show();
+            }
+            @Override
+            public void onError(String module, int errCode, String errMsg) {
 
+            }
+        });
+    }
     @Override
     protected void onPause() {
         super.onPause();
