@@ -1,6 +1,7 @@
 package com.example.suyeq.dangyuliveapp.widget;
 import android.app.Activity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -17,7 +18,6 @@ import java.util.Map;
 
 public class UserInfoDialog extends TransParentDialog {
     private TIMUserProfile userInfo;
-
     private ImageView user_close;
     private ImageView user_avatar;
     private TextView user_name;
@@ -61,9 +61,8 @@ public class UserInfoDialog extends TransParentDialog {
 
 
     private void bindDataToViews() {
-
         String avatarUrl = userInfo.getFaceUrl();
-        if (!TextUtils.isEmpty(avatarUrl)) {
+        if (TextUtils.isEmpty(avatarUrl)) {
             ImgUtils.loadRound(R.drawable.default_avatar, user_avatar);
         } else {
             ImgUtils.loadRound(avatarUrl, user_avatar);
@@ -93,24 +92,24 @@ public class UserInfoDialog extends TransParentDialog {
 //        user_level.setText(level);
     }
 
-    private String getValue(Map<String, byte[]> customInfo, String key, String defaultValue) {
-        if (customInfo != null) {
-            byte[] valueBytes = customInfo.get(key);
-            if (valueBytes != null) {
-                return new String(valueBytes);
-            }
-        }
-        return defaultValue;
-    }
+//    private String getValue(Map<String, byte[]> customInfo, String key, String defaultValue) {
+//        if (customInfo != null) {
+//            byte[] valueBytes = customInfo.get(key);
+//            if (valueBytes != null) {
+//                return new String(valueBytes);
+//            }
+//        }
+//        return defaultValue;
+//    }
 
-    private String formatLargNum(int num) {
-        float wan = num * 1.0f / 10000;
-        if (wan < 1) {
-            return "" + num;
-        } else {
-            return new java.text.DecimalFormat("#.00").format(wan) + "万";
-        }
-    }
+//    private String formatLargNum(int num) {
+//        float wan = num * 1.0f / 10000;
+//        if (wan < 1) {
+//            return "" + num;
+//        } else {
+//            return new java.text.DecimalFormat("#.00").format(wan) + "万";
+//        }
+//    }
 
     private View.OnClickListener clickListener = new View.OnClickListener() {
         @Override

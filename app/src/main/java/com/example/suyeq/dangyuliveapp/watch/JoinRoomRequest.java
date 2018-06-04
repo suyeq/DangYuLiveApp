@@ -16,19 +16,18 @@ public class JoinRoomRequest extends BaseRequest {
 
     public void request(String userId,int roomId){
         //对发送请求进行封装
-        Call<Object> call = request.joinLiving("quit",userId,roomId);
+        Call<String> call = request.joinLiving("join",userId,roomId);
         //发送网络请求(异步)
-        call.enqueue(new Callback<Object>() {
+        call.enqueue(new Callback<String>() {
             //请求成功时回调
             @Override
-            public void onResponse(Call<Object> call, Response<Object> response) {
+            public void onResponse(Call<String> call, Response<String> response) {
                 l.onSuccess(response.body());
-
             }
 
             //请求失败时回调
             @Override
-            public void onFailure(Call<Object> call, Throwable throwable) {
+            public void onFailure(Call<String> call, Throwable throwable) {
                 l.onFail();
             }
         });

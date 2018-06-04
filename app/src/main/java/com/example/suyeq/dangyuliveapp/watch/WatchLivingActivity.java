@@ -1,5 +1,7 @@
 package com.example.suyeq.dangyuliveapp.watch;
 
+import android.app.Activity;
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -9,7 +11,6 @@ import android.widget.Toast;
 
 import com.example.suyeq.dangyuliveapp.AppApplication;
 import com.example.suyeq.dangyuliveapp.R;
-import com.example.suyeq.dangyuliveapp.living.QuitLivingQuest;
 import com.example.suyeq.dangyuliveapp.model.ClassCategory;
 import com.example.suyeq.dangyuliveapp.model.MessageInfo;
 import com.example.suyeq.dangyuliveapp.view.BarrageView;
@@ -18,8 +19,10 @@ import com.example.suyeq.dangyuliveapp.view.ChageRelayout;
 import com.example.suyeq.dangyuliveapp.view.ChatView;
 import com.example.suyeq.dangyuliveapp.view.MessageView;
 import com.example.suyeq.dangyuliveapp.view.TitleView;
+import com.tencent.TIMFriendshipManager;
 import com.tencent.TIMMessage;
 import com.tencent.TIMUserProfile;
+import com.tencent.TIMValueCallBack;
 import com.tencent.av.sdk.AVRoomMulti;
 import com.tencent.ilivesdk.ILiveCallBack;
 import com.tencent.ilivesdk.core.ILiveRoomManager;
@@ -30,6 +33,9 @@ import com.tencent.livesdk.ILVLiveConstants;
 import com.tencent.livesdk.ILVLiveManager;
 import com.tencent.livesdk.ILVLiveRoomOption;
 import com.tencent.livesdk.ILVText;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class WatchLivingActivity extends AppCompatActivity {
     private AVRootView mLiveView;
@@ -57,7 +63,7 @@ public class WatchLivingActivity extends AppCompatActivity {
             finish();
             return;
         }
-
+        updateAvatar(userId);
         ILVLiveConfig liveConfig = AppApplication.getApplication().getLiveConfig();
         liveConfig.setLiveMsgListener(new ILVLiveConfig.ILVLiveMsgListener() {
             @Override
@@ -115,6 +121,7 @@ public class WatchLivingActivity extends AppCompatActivity {
             @Override
             public void onSuccess(Object data) {
                 setEnterRoom();
+                addWatcher(roomId,AppApplication.getApplication().getSelfProfile().getIdentifier());
             }
 
             @Override
@@ -124,18 +131,34 @@ public class WatchLivingActivity extends AppCompatActivity {
         });
     }
 
-    private void addWatcher(TIMUserProfile userProfile,int roomId,String userId) {
+    private void updateAvatar(String hostId) {
+        List<String> ids = new ArrayList<String>();
+        ids.add(hostId);
+        TIMFriendshipManager.getInstance().getUsersProfile(ids, new TIMValueCallBack<List<TIMUserProfile>>() {
+            @Override
+            public void onError(int i, String s) {
+                Toast.makeText(WatchLivingActivity.this, "请求用户信息失败", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onSuccess(List<TIMUserProfile> timUserProfiles) {
+                titleView.setHost(timUserProfiles.get(0));
+            }
+        });
+    }
+
+    private void addWatcher(int roomId,String userId) {
         JoinRoomRequest request=new JoinRoomRequest();
         request.request(userId,roomId);
-        request.setOnResultListener(new JoinRoomRequest.OnResultListener<Object>() {
+        request.setOnResultListener(new JoinRoomRequest.OnResultListener<String>() {
             @Override
             public void onFail() {
                 Toast.makeText(WatchLivingActivity.this, "加入房间失败", Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public void onSuccess(Object o) {
-                Toast.makeText(WatchLivingActivity.this, "加入房间成功", Toast.LENGTH_SHORT).show();
+            public void onSuccess(String o) {
+                Toast.makeText(WatchLivingActivity.this, "加入房间成功"+o, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -148,7 +171,7 @@ public class WatchLivingActivity extends AppCompatActivity {
         barrageView=(BarrageView) findViewById(R.id.barrage_view);
         chageRelayout.setOnSizeChangeListener(new ChageRelayout.OnSizeChangeListener() {
             @Override
-            public void onHide() {
+            public void onHide(){
                 chatView.setVisibility(View.INVISIBLE);
                 bottomControlView.setVisibility(View.VISIBLE);
             }
@@ -159,7 +182,6 @@ public class WatchLivingActivity extends AppCompatActivity {
             }
         });
         titleView=(TitleView) findViewById(R.id.title_view);
-        titleView.setHost(AppApplication.getApplication().getSelfProfile());
         mLiveView = (AVRootView) findViewById(R.id.live_view);
         ILVLiveManager.getInstance().setAvVideoView(mLiveView);
         messageView=(MessageView) findViewById(R.id.msg_view);
@@ -234,6 +256,7 @@ public class WatchLivingActivity extends AppCompatActivity {
         ILVLiveManager.getInstance().sendCustomCmd(customCmd, new ILiveCallBack() {
             @Override
             public void onSuccess(Object data) {
+                titleView.addWatcher(AppApplication.getApplication().getSelfProfile());
                 Toast.makeText(WatchLivingActivity.this, "观众进入直播间", Toast.LENGTH_SHORT).show();
             }
             @Override

@@ -30,7 +30,7 @@ public interface GetService {
                             @Query("userId") String userId);
 
     @POST("roomServlet")
-    Call<Object> joinLiving(@Query("action") String action,
+    Call<String> joinLiving(@Query("action") String action,
                             @Query("userId") String userId,
                             @Query("roomId") int roomId);
 }
