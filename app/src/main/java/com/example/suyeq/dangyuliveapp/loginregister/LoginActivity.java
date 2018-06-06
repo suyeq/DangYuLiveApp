@@ -112,7 +112,7 @@ public class LoginActivity extends AppCompatActivity {
               //  boolean isfirstlogin=sp.getBoolean("firstlogin",true);
              //   if(isfirstlogin){
                     Intent intent = new Intent();
-                    intent.setClass(LoginActivity.this, EditProFileActivity.class);
+                    intent.setClass(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
               //  }else{
                //     Intent intent = new Intent();

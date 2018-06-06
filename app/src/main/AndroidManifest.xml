@@ -28,9 +28,11 @@
         <activity android:name=".loginregister.RegisterActivity" />
         <activity android:name=".editprofile.EditProFileActivity" />
         <activity android:name=".createlive.CreateActivity" />
-        <activity android:name=".living.AnchorLivingActivity"
-                  android:windowSoftInputMode="adjustResize"/>
-        <activity android:name=".watch.WatchLivingActivity"></activity>
+        <activity
+            android:name=".living.AnchorLivingActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".watch.WatchLivingActivity" />
+        <activity android:name=".classify.ClassifyActivity"></activity>
     </application>
 
 </manifest>

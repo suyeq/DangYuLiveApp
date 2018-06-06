@@ -2,8 +2,6 @@ package com.example.suyeq.dangyuliveapp.editprofile;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -23,6 +21,10 @@ import com.example.suyeq.dangyuliveapp.MainActivity;
 import com.example.suyeq.dangyuliveapp.R;
 import com.example.suyeq.dangyuliveapp.utils.ImgUtils;
 import com.example.suyeq.dangyuliveapp.utils.PicChooserHelper;
+import com.example.suyeq.dangyuliveapp.view.ProfileEdit;
+import com.example.suyeq.dangyuliveapp.view.ProfileTextView;
+import com.example.suyeq.dangyuliveapp.widget.EditGenderDialog;
+import com.example.suyeq.dangyuliveapp.widget.EditStrProfileDialog;
 import com.tencent.TIMCallBack;
 import com.tencent.TIMFriendGenderType;
 import com.tencent.TIMFriendshipManager;
@@ -47,9 +49,9 @@ public class EditProFileFragment extends Fragment {
 
     private ProfileTextView mIdView;
     private ProfileTextView mLevelView;
-    private ProfileTextView mGetNumsView;
-    private ProfileTextView mSendNumsView;
-    private Button mCompleteBtn;
+   // private ProfileTextView mGetNumsView;
+    //private ProfileTextView mSendNumsView;
+    //private Button mCompleteBtn;
     private TIMUserProfile userProfile;
     private PicChooserHelper mPicChooserHelper;
     private Activity activity;
@@ -99,12 +101,12 @@ public class EditProFileFragment extends Fragment {
         mNickNameEdt.set(R.drawable.ic_info_nickname, "昵称", "溯夜");
         mGenderEdt.set(R.drawable.ic_info_gender, "性别", "男");
         mSignEdt.set(R.drawable.ic_info_sign, "签名", "无");
-        mRenzhengEdt.set(R.drawable.ic_info_renzhen, "认证", "无");
+       // mRenzhengEdt.set(R.drawable.ic_info_renzhen, "认证", "无");
         mLocationEdt.set(R.drawable.ic_info_location, "地区", "无");
         mIdView.set(R.drawable.ic_info_id, "ID", "0");
         mLevelView.set(R.drawable.ic_info_level, "等级", "0");
-        mGetNumsView.set(R.drawable.ic_info_get, "获得票数", "0");
-        mSendNumsView.set(R.drawable.ic_info_send, "送出票数", "0");
+       // mGetNumsView.set(R.drawable.ic_info_get, "获得票数", "0");
+       // mSendNumsView.set(R.drawable.ic_info_send, "送出票数", "0");
     }
 
     private void findAllViews(View view) {
@@ -115,15 +117,15 @@ public class EditProFileFragment extends Fragment {
         mNickNameEdt = (ProfileEdit) view.findViewById(R.id.nick_name);
         mGenderEdt = (ProfileEdit) view.findViewById(R.id.gender);
         mSignEdt = (ProfileEdit) view.findViewById(R.id.sign);
-        mRenzhengEdt = (ProfileEdit) view.findViewById(R.id.renzheng);
+       // mRenzhengEdt = (ProfileEdit) view.findViewById(R.id.renzheng);
         mLocationEdt = (ProfileEdit) view.findViewById(R.id.location);
 
         mIdView = (ProfileTextView) view.findViewById(R.id.id);
         mLevelView = (ProfileTextView) view.findViewById(R.id.level);
-        mGetNumsView = (ProfileTextView) view.findViewById(R.id.get_nums);
-        mSendNumsView = (ProfileTextView) view.findViewById(R.id.send_nums);
+       // mGetNumsView = (ProfileTextView) view.findViewById(R.id.get_nums);
+        //mSendNumsView = (ProfileTextView) view.findViewById(R.id.send_nums);
 
-        mCompleteBtn = (Button) view.findViewById(R.id.complete);
+       // mCompleteBtn = (Button) view.findViewById(R.id.complete);
     }
 
     private void setListeners() {
@@ -131,14 +133,14 @@ public class EditProFileFragment extends Fragment {
         mNickNameEdt.setOnClickListener(clickListener);
         mGenderEdt.setOnClickListener(clickListener);
         mSignEdt.setOnClickListener(clickListener);
-        mRenzhengEdt.setOnClickListener(clickListener);
+       // mRenzhengEdt.setOnClickListener(clickListener);
         mLocationEdt.setOnClickListener(clickListener);
-        mCompleteBtn.setOnClickListener(clickListener);
+     //   mCompleteBtn.setOnClickListener(clickListener);
     }
 
     private void setTitleBar() {
-        mTitlebar.setTitle("编辑个人信息");
-        mTitlebar.setTitleTextColor(Color.WHITE);
+        mTitlebar.setTitle("个人中心");
+       // mTitlebar.setTitleTextColor(Color.WHITE);
         Activity activity = getActivity();
         if (activity instanceof AppCompatActivity) {
             ((AppCompatActivity) activity).setSupportActionBar(mTitlebar);
@@ -169,19 +171,22 @@ public class EditProFileFragment extends Fragment {
             } else if (id == R.id.sign) {
                 //修改签名
                 showEditSignDialog(activity);
-            } else if (id == R.id.renzheng) {
-                //修改认证
-                showEditRenzhengDialog(activity);
-            } else if (id == R.id.location) {
+            }
+//            } else if (id == R.id.renzheng) {
+//                //修改认证
+//                showEditRenzhengDialog(activity);
+//            }
+            else if (id == R.id.location) {
                 //修改位置
                 showEditLocationDialog(activity);
-            } else if (id == R.id.complete) {
-                //完成，点击跳转到主界面
-                Intent intent = new Intent();
-                intent.setClass(getContext(), MainActivity.class);
-                startActivity(intent);
-
             }
+//            } else if (id == R.id.complete) {
+//                //完成，点击跳转到主界面
+//                Intent intent = new Intent();
+//                intent.setClass(getContext(), MainActivity.class);
+//                startActivity(intent);
+//
+//            }
         }
     };
 

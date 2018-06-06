@@ -30,7 +30,7 @@
             android:scaleType="fitXY"
             android:src="@drawable/cover_background" />
 
-        <ImageView
+        <!--<ImageView
             android:id="@+id/live_logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -38,8 +38,24 @@
             android:layout_alignParentTop="true"
             android:layout_marginRight="12dp"
             android:layout_marginTop="10dp"
-            android:src="@drawable/icon_livewhite" />
-
+            android:src="@drawable/icon_livewhite" />-->
+        <LinearLayout
+            android:id="@+id/live_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="12dp"
+            android:background="#00000000"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:id="@+id/dinstinguish"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="英雄联盟"
+                android:textColor="@color/white"/>
+        </LinearLayout>
         <LinearLayout
             android:id="@+id/host_bar"
             android:layout_width="match_parent"

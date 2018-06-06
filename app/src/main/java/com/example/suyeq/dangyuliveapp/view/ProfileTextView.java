@@ -1,8 +1,7 @@
-package com.example.suyeq.dangyuliveapp.editprofile;
+package com.example.suyeq.dangyuliveapp.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
-
 
 
 public class ProfileTextView extends ProfileEdit {

@@ -12,7 +12,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.suyeq.dangyuliveapp.AppApplication;
+import com.example.suyeq.dangyuliveapp.MainActivity;
 import com.example.suyeq.dangyuliveapp.R;
+import com.tencent.TIMFriendshipManager;
+import com.tencent.TIMUserProfile;
+import com.tencent.TIMValueCallBack;
 import com.tencent.ilivesdk.ILiveCallBack;
 import com.tencent.ilivesdk.core.ILiveLoginManager;
 
@@ -40,7 +45,7 @@ public class RegisterActivity extends AppCompatActivity {
     private void setTitleBar() {
 
         mTitlebar.setTitle("注册新用户");
-        mTitlebar.setTitleTextColor(Color.WHITE);
+       // mTitlebar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(mTitlebar);
     }
 
@@ -131,11 +136,10 @@ public class RegisterActivity extends AppCompatActivity {
                 Toast.makeText(RegisterActivity.this, "登陆成功", Toast.LENGTH_SHORT).show();
                 //最终登录成功
                 //跳转到修改用户信息界面。
-                //Intent intent = new Intent();
-               // intent.setClass(RegisterActivity.this,EditProfileActivity.class);
-               // startActivity(intent);
-
-               // getSelfInfo();
+                Intent intent = new Intent();
+                intent.setClass(RegisterActivity.this,MainActivity.class);
+                startActivity(intent);
+                getSelfInfo();
             }
 
             @Override
@@ -147,7 +151,7 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-   /* private void getSelfInfo() {
+   private void getSelfInfo() {
         TIMFriendshipManager.getInstance().getSelfProfile(new TIMValueCallBack<TIMUserProfile>() {
             @Override
             public void onError(int i, String s) {
@@ -157,8 +161,8 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onSuccess(TIMUserProfile timUserProfile) {
                 //获取自己信息成功
-                BearApplication.getApplication().setSelfProfile(timUserProfile);
+                AppApplication.getApplication().setSelfProfile(timUserProfile);
             }
         });
-    }*/
+    }
 }

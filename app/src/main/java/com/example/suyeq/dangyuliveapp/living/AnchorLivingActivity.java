@@ -200,6 +200,7 @@ public class AnchorLivingActivity extends AppCompatActivity {
                     //titleView.removeWatcher(userProfile);
                 }else if (cmd.getCmd() == ClassCategory.CMD_CHAT_watcherleave) {//观众离开
                     titleView.removeWatcher(userProfile);
+                    removeWatcher(roomId,userProfile.getIdentifier());
                     Toast.makeText(AnchorLivingActivity.this, "观众已离开", Toast.LENGTH_SHORT).show();
                     //finish();
                 }
@@ -236,6 +237,23 @@ public class AnchorLivingActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void removeWatcher(int roomId,String userId){
+        QuitLivingQuest request=new QuitLivingQuest();
+        request.request(roomId,userId);
+        request.setOnResultListener(new QuitLivingQuest.OnResultListener<String>() {
+            @Override
+            public void onFail() {
+
+            }
+
+            @Override
+            public void onSuccess(String o) {
+
+            }
+        });
+    }
+
     private void init(){
         chatView.setVisibility(View.INVISIBLE);
         bottomControlView.setVisibility(View.VISIBLE);

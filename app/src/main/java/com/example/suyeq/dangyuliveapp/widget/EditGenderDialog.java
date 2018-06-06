@@ -1,4 +1,4 @@
-package com.example.suyeq.dangyuliveapp.editprofile;
+package com.example.suyeq.dangyuliveapp.widget;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -7,7 +7,6 @@ import android.view.WindowManager;
 import android.widget.RadioButton;
 
 import com.example.suyeq.dangyuliveapp.R;
-import com.example.suyeq.dangyuliveapp.widget.TransParentDialog;
 
 
 public class EditGenderDialog extends TransParentDialog {

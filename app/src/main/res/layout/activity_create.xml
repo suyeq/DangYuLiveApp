@@ -8,7 +8,7 @@
         android:id="@+id/titlebar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimaryDark" />
+        android:background="@color/white" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
                 android:id="@+id/cover"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:background="@drawable/default_cover"
+                android:background="@drawable/xiaoling"
                 android:scaleType="fitXY" />
 
             <TextView
@@ -75,22 +75,46 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="房间号"
+                android:text="直播类型"
                 android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/room_no"
-                android:layout_width="0dp"
-                android:layout_weight="4"
+            <RadioGroup
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:lines="1"
-                android:maxLength="32"
-                android:padding="10dp"
-                android:textSize="20sp" />
+                android:orientation="horizontal">
+                <RadioButton
+                    android:id="@+id/select1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="@color/grey"
+                    android:text="游戏"/>
+                <RadioButton
+                    android:id="@+id/select2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="@color/grey"
+                    android:text="娱乐"/>
+                <RadioButton
+                    android:id="@+id/select3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="@color/grey"
+                    android:text="户外"/>
+            </RadioGroup>
+            <!--<TextView-->
+                <!--android:id="@+id/room_no"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_weight="4"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:lines="1"-->
+                <!--android:maxLength="32"-->
+                <!--android:padding="10dp"-->
+                <!--android:textSize="20sp" />-->
         </LinearLayout>
 
 

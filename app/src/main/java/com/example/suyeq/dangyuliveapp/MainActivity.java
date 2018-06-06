@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TabHost;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.suyeq.dangyuliveapp.createlive.CreateActivity;
@@ -35,19 +36,19 @@ public class MainActivity extends AppCompatActivity {
         //添加fragment.
 
         {
-            TabHost.TabSpec profileTab = mTabHost.newTabSpec("livelist").setIndicator(getIndicator(R.drawable.tab_livelist));
+            TabHost.TabSpec profileTab = mTabHost.newTabSpec("livelist").setIndicator(getIndicator(R.drawable.tab_livelist,"首页"));
             mTabHost.addTab(profileTab, LiveListFragment.class, null);
             mTabHost.getTabWidget().setDividerDrawable(null);
         }
 
         {
-            TabHost.TabSpec profileTab = mTabHost.newTabSpec("createlive").setIndicator(getIndicator(R.drawable.tab_publish_live));
+            TabHost.TabSpec profileTab = mTabHost.newTabSpec("createlive").setIndicator(getIndicator(R.drawable.living,"直播"));
             mTabHost.addTab(profileTab, null, null);
             mTabHost.getTabWidget().setDividerDrawable(null);
         }
 
         {
-            TabHost.TabSpec profileTab = mTabHost.newTabSpec("profile").setIndicator(getIndicator(R.drawable.tab_profile));
+            TabHost.TabSpec profileTab = mTabHost.newTabSpec("profile").setIndicator(getIndicator(R.drawable.tab_profile,"我的"));
             mTabHost.addTab(profileTab, EditProFileFragment.class, null);
             mTabHost.getTabWidget().setDividerDrawable(null);
         }
@@ -63,9 +64,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    private View getIndicator(int resId) {
+    private View getIndicator(int resId,String label) {
         View tabView = LayoutInflater.from(this).inflate(R.layout.view_indicator, null);
         ImageView tabImg = (ImageView) tabView.findViewById(R.id.tab_icon);
+        TextView text=(TextView) tabView.findViewById(R.id.lable_txt);
+        text.setText(label);
         tabImg.setImageResource(resId);
         return tabView;
     }

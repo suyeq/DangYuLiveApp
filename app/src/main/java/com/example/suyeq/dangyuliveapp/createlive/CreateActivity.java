@@ -46,7 +46,7 @@ public class CreateActivity extends AppCompatActivity {
         mCoverTipTxt = (TextView) findViewById(R.id.tv_pic_tip);
         mTitleEt = (EditText) findViewById(R.id.title);
         mCreateRoomBtn = (TextView) findViewById(R.id.create);
-        mRoomNoText = (TextView) findViewById(R.id.room_no);
+        //mRoomNoText = (TextView) findViewById(R.id.room_no);
     }
 
     private void setListeners() {
@@ -56,8 +56,8 @@ public class CreateActivity extends AppCompatActivity {
 
     private void setupTitlebar() {
         Toolbar titlebar = (Toolbar) findViewById(R.id.titlebar);
-        titlebar.setTitle("开始我的直播");
-        titlebar.setTitleTextColor(Color.WHITE);
+        titlebar.setTitle("创建直播");
+        //titlebar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(titlebar);
     }
 
@@ -84,8 +84,6 @@ public class CreateActivity extends AppCompatActivity {
         param.userName = TextUtils.isEmpty(nickName) ? selfProfile.getIdentifier() : nickName;
         param.liveTitle = mTitleEt.getText().toString();
         param.liveCover = coverUrl;
-        Log.e("url",coverUrl);
-//        Log.e("qingqiu",coverUrl);
         //创建房间
         CreateRoomRequest request = new CreateRoomRequest();
         request.setOnResultListener(new CreateRoomRequest.OnResultListener<RoomInfo>() {

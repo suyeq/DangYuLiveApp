@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.suyeq.dangyuliveapp.AppApplication;
 import com.example.suyeq.dangyuliveapp.R;
+import com.example.suyeq.dangyuliveapp.living.QuitLivingQuest;
 import com.example.suyeq.dangyuliveapp.model.ClassCategory;
 import com.example.suyeq.dangyuliveapp.model.MessageInfo;
 import com.example.suyeq.dangyuliveapp.view.BarrageView;
@@ -99,6 +100,7 @@ public class WatchLivingActivity extends AppCompatActivity {
                     finish();
                 }else if (cmd.getCmd() == ClassCategory.CMD_CHAT_watcherleave) {//观众离开
                     titleView.removeWatcher(userProfile);
+                    //removeWatcher(roomId,userProfile.getIdentifier());
                     Toast.makeText(WatchLivingActivity.this, "观众已离开", Toast.LENGTH_SHORT).show();
                     //finish();
                 }
@@ -127,6 +129,7 @@ public class WatchLivingActivity extends AppCompatActivity {
             @Override
             public void onError(String module, int errCode, String errMsg) {
                 Toast.makeText(WatchLivingActivity.this, "进入房间失败！！！", Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
     }
@@ -162,6 +165,22 @@ public class WatchLivingActivity extends AppCompatActivity {
             }
         });
     }
+
+//    private void removeWatcher(int roomId,String userId){
+//        QuitLivingQuest request=new QuitLivingQuest();
+//        request.request(roomId,userId);
+//        request.setOnResultListener(new QuitLivingQuest.OnResultListener<String>() {
+//            @Override
+//            public void onFail() {
+//
+//            }
+//
+//            @Override
+//            public void onSuccess(String o) {
+//
+//            }
+//        });
+//    }
 
 
     private void findAllView() {
