@@ -59,6 +59,7 @@
             android:layout_marginTop="10dp"
             android:layout_below="@+id/class1">
             <LinearLayout
+                android:id="@+id/button_game"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
@@ -76,6 +77,7 @@
                     android:text="游戏"/>
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/button_yule"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
@@ -93,6 +95,7 @@
                     android:text="娱乐"/>
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/button_huwai"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"

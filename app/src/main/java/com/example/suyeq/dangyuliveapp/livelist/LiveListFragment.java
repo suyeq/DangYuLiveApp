@@ -26,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.suyeq.dangyuliveapp.R;
+import com.example.suyeq.dangyuliveapp.classify.ClassifyActivity;
 import com.example.suyeq.dangyuliveapp.model.ClassCategory;
 import com.example.suyeq.dangyuliveapp.model.RoomInfo;
 import com.example.suyeq.dangyuliveapp.utils.BaseRequest;
@@ -58,6 +59,9 @@ public class LiveListFragment extends Fragment {
     private LinearLayout mLinearLayoutDot;
     private List<ImageView> mImageViewDotList;
     private boolean threadstatus=true;
+    private LinearLayout button_game;
+    private LinearLayout button_yule;
+    private LinearLayout button_huwai;
     Handler handler=new Handler(){
         @Override
         public void handleMessage(Message msg) {
@@ -122,6 +126,17 @@ public class LiveListFragment extends Fragment {
             public void onRefresh() {
                 //请求服务器，获取直播列表
                 getListRequest();
+            }
+        });
+        button_game=(LinearLayout) view.findViewById(R.id.button_game);
+        button_yule=(LinearLayout) view.findViewById(R.id.button_yule);
+        button_huwai=(LinearLayout) view.findViewById(R.id.button_huwai);
+        button_game.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent();
+                intent.setClass(getContext(), ClassifyActivity.class);
+                startActivity(intent);
             }
         });
     }
