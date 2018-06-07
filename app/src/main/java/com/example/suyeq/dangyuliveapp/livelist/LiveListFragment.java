@@ -139,6 +139,22 @@ public class LiveListFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        button_huwai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent();
+                intent.setClass(getContext(), ClassifyActivity.class);
+                startActivity(intent);
+            }
+        });
+        button_yule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent();
+                intent.setClass(getContext(), ClassifyActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private class LiveListAdapter extends BaseAdapter {

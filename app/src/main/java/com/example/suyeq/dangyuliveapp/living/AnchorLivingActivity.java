@@ -74,7 +74,7 @@ public class AnchorLivingActivity extends AppCompatActivity {
         });
         mLiveView = (AVRootView) findViewById(R.id.live_view);
         bottomControlView=(BottomControlView) findViewById(R.id.control_view);
-       // bottomControlView.setIsHost(true);
+       //bottomControlView.setIsHost(true);
         bottomControlView.setOnControlListener(new BottomControlView.OnControlListener() {
             @Override
             public void onChatClick() {
