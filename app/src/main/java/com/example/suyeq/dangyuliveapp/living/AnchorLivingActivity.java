@@ -305,6 +305,7 @@ public class AnchorLivingActivity extends AppCompatActivity {
 
             }
         });
+
         QuitLivingQuest quest=new QuitLivingQuest();
         String userId=AppApplication.getApplication().getSelfProfile().getIdentifier();
         quest.request(roomId,userId);
