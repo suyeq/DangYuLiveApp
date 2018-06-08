@@ -128,7 +128,7 @@ public class WatchLivingActivity extends AppCompatActivity {
 
             @Override
             public void onError(String module, int errCode, String errMsg) {
-                Toast.makeText(WatchLivingActivity.this, "进入房间失败！！！", Toast.LENGTH_SHORT).show();
+                Toast.makeText(WatchLivingActivity.this, "主播已下播", Toast.LENGTH_SHORT).show();
                 finish();
             }
         });
@@ -156,12 +156,12 @@ public class WatchLivingActivity extends AppCompatActivity {
         request.setOnResultListener(new JoinRoomRequest.OnResultListener<String>() {
             @Override
             public void onFail() {
-                Toast.makeText(WatchLivingActivity.this, "加入房间失败", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(WatchLivingActivity.this, "加入房间失败", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onSuccess(String o) {
-                Toast.makeText(WatchLivingActivity.this, "加入房间成功"+o, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(WatchLivingActivity.this, "加入房间成功"+o, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -205,7 +205,7 @@ public class WatchLivingActivity extends AppCompatActivity {
         ILVLiveManager.getInstance().setAvVideoView(mLiveView);
         messageView=(MessageView) findViewById(R.id.msg_view);
         bottomControlView=(BottomControlView) findViewById(R.id.control_view);
-        //bottomControlView.setIsHost(false);
+        //bottomControlView.setIsHost(true);
         bottomControlView.setOnControlListener(new BottomControlView.OnControlListener() {
             @Override
             public void onChatClick() {
@@ -326,7 +326,7 @@ public class WatchLivingActivity extends AppCompatActivity {
 
             @Override
             public void onError(String module, int errCode, String errMsg) {
-                Toast.makeText(WatchLivingActivity.this, "退出直播间失败", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(WatchLivingActivity.this, "退出直播间失败", Toast.LENGTH_SHORT).show();
                 finish();
             }
         });

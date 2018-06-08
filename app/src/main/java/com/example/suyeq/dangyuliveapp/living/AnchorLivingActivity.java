@@ -305,22 +305,22 @@ public class AnchorLivingActivity extends AppCompatActivity {
 
             }
         });
-//        QuitLivingQuest quest=new QuitLivingQuest();
-//        String userId=AppApplication.getApplication().getSelfProfile().getIdentifier();
-//        quest.request(roomId,userId);
-//        quest.setOnResultListener(new QuitLivingQuest.OnResultListener<String>() {
-//            @Override
-//            public void onFail() {
-//                Toast.makeText(AnchorLivingActivity.this, "删除失败！！！", Toast.LENGTH_SHORT).show();
-//            }
-//
-//            @Override
-//            public void onSuccess(String result) {
-//                if(result.equals("1")){
-//                    Toast.makeText(AnchorLivingActivity.this, "删除成功！！！", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
+        QuitLivingQuest quest=new QuitLivingQuest();
+        String userId=AppApplication.getApplication().getSelfProfile().getIdentifier();
+        quest.request(roomId,userId);
+        quest.setOnResultListener(new QuitLivingQuest.OnResultListener<String>() {
+            @Override
+            public void onFail() {
+                Toast.makeText(AnchorLivingActivity.this, "删除失败！！！", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onSuccess(String result) {
+                if(result.equals("1")){
+                    Toast.makeText(AnchorLivingActivity.this, "删除成功！！！", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     private void addWatcher(TIMUserProfile userProfile,int roomId) {

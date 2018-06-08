@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.suyeq.dangyuliveapp.R;
 import com.example.suyeq.dangyuliveapp.model.RoomInfo;
@@ -42,10 +43,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         }
     }
 
+    public RecyclerAdapter(Context context){
+        this.context=context;
+    }
+
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        context=parent.getContext();
+      //  context=parent.getContext();
         View childView = inflater.inflate(R.layout.item, parent, false);
         MyViewHolder viewHolder = new MyViewHolder(childView);
         return viewHolder;
@@ -79,6 +84,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
             hostAvatar = (ImageView) itemView.findViewById(R.id.host_avatar);
             watchNums = (TextView) itemView.findViewById(R.id.watch_nums);
         }
+
         public void bindData(final RoomInfo roomInfo) {
             String userName = roomInfo.getUserName();
             if (TextUtils.isEmpty(userName)) {
@@ -110,7 +116,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
             String watchText = watchers + "人\r\n正在看";
             watchNums.setText(watchText);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
+            liveCover.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent();

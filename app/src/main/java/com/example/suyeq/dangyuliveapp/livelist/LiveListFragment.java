@@ -52,7 +52,7 @@ public class LiveListFragment extends Fragment {
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private ViewPager mViewPager;
     private List<ImageView> mImageViewList;
-    private int[] images={R.drawable.a1,R.drawable.a2,R.drawable.a3,R.drawable.a4,R.drawable.a5};
+    private int[] images={R.drawable.xiaoling,R.drawable.xuexia,R.drawable.saber,R.drawable.yasina,R.drawable.xiaomai};
     private int currentPosition=1;
     private int dotPosition=0;
     private int prePosition=0;
@@ -82,6 +82,7 @@ public class LiveListFragment extends Fragment {
         initData();
         setDot();
         setViewPager();
+        Log.e("jinlaile",threadstatus+"");
         autoPlay();
         getListRequest();
         return view;
@@ -354,7 +355,7 @@ public class LiveListFragment extends Fragment {
         });
     }
     //  设置自动播放
-    private void autoPlay() {
+    private  void autoPlay() {
         new Thread(){
             @Override
             public void run() {

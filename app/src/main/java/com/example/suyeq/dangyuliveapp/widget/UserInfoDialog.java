@@ -52,8 +52,8 @@ public class UserInfoDialog extends TransParentDialog {
         user_id = (TextView) view.findViewById(R.id.user_id);
         user_renzhen = (TextView) view.findViewById(R.id.user_renzhen);
         user_sign = (TextView) view.findViewById(R.id.user_sign);
-        user_songchu = (TextView) view.findViewById(R.id.user_songchu);
-        user_bopiao = (TextView) view.findViewById(R.id.user_bopiao);
+        //user_songchu = (TextView) view.findViewById(R.id.user_songchu);
+       // user_bopiao = (TextView) view.findViewById(R.id.user_bopiao);
 
         user_close.setOnClickListener(clickListener);
         user_avatar.setOnClickListener(clickListener);

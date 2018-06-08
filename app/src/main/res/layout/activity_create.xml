@@ -81,6 +81,7 @@
                 android:text="直播类型"
                 android:textSize="18sp" />
             <RadioGroup
+                android:id="@+id/radiogroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">

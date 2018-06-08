@@ -133,8 +133,11 @@ public class TitleView extends LinearLayout {
     public void removeWatcher(TIMUserProfile userProfile) {
         if (userProfile != null) {
             watcherAdapter.removeWatcher(userProfile);
-            watcherNum--;
-            watchersNumView.setText("观众:" + watcherNum);
+            if(watcherNum>0){
+                watcherNum--;
+                watchersNumView.setText("观众:" + watcherNum);
+            }
+
         }
     }
 

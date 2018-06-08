@@ -32,7 +32,7 @@ public class ClassifyFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerAdapter=new RecyclerAdapter();
+        recyclerAdapter=new RecyclerAdapter(getContext());
         getList();
         recyclerView.setAdapter(recyclerAdapter);
         return rootView;
@@ -51,7 +51,7 @@ public class ClassifyFragment extends Fragment {
             @Override
             public void onSuccess(List<RoomInfo> l) {
                 recyclerAdapter.addRoominfos(l);
-                Toast.makeText(getContext(),"加载完成", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(),"加载完成", Toast.LENGTH_SHORT).show();
             }
         });
     }

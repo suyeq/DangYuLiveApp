@@ -36,7 +36,7 @@ public class BottomControlView extends RelativeLayout {
     public void setIsHost(boolean isHost) {
         if (isHost) {
             giftView.setVisibility(INVISIBLE);
-            optionView.setVisibility(VISIBLE);
+            optionView.setVisibility(INVISIBLE);
         } else {
             optionView.setVisibility(INVISIBLE);
             giftView.setVisibility(VISIBLE);
@@ -48,7 +48,7 @@ public class BottomControlView extends RelativeLayout {
         findViewById(R.id.close).setOnClickListener(clickListener);
         //giftView = (ImageView) findViewById(R.id.gift);
        // giftView.setOnClickListener(clickListener);
-        optionView = (ImageView) findViewById(R.id.option);
+        //optionView = (ImageView) findViewById(R.id.option);
        // optionView.setOnClickListener(clickListener);
     }
 
@@ -65,16 +65,17 @@ public class BottomControlView extends RelativeLayout {
                 if (mOnControlListener != null) {
                     mOnControlListener.onCloseClick();
                 }
-            } else if (view.getId() == R.id.gift) {
+            } //else if (view.getId() == R.id.gift) {
                 // 显示礼物选择九宫格
 //                if (mOnControlListener != null) {
 //                    mOnControlListener.onGiftClick();
 //                }
-            } else if (view.getId() == R.id.option) {
+           // }
+            //else if (view.getId() == R.id.option) {
 //                if (mOnControlListener != null) {
 //                    mOnControlListener.onOptionClick(view);
 //                }
-            }
+          //  }
 
         }
     };

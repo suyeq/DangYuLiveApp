@@ -25,7 +25,8 @@
            android:id="@+id/fragment_tabhost"
            android:layout_width="match_parent"
            android:layout_height="50dp"
-           android:gravity="bottom"/>
+           android:layout_gravity="bottom"
+           android:layout_marginTop="8dp"/>
    <!--</LinearLayout>-->
 
 </LinearLayout>

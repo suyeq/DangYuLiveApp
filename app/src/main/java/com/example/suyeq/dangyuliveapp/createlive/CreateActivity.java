@@ -12,6 +12,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +33,11 @@ public class CreateActivity extends AppCompatActivity {
     private EditText mTitleEt;
     private TextView mCreateRoomBtn;
     private TextView mRoomNoText;
+    private RadioGroup radioGroup;
+    private RadioButton radioButton1;
+    private RadioButton radioButton2;
+    private RadioButton radioButton3;
+    private boolean pressSelect=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,12 +53,30 @@ public class CreateActivity extends AppCompatActivity {
         mCoverTipTxt = (TextView) findViewById(R.id.tv_pic_tip);
         mTitleEt = (EditText) findViewById(R.id.title);
         mCreateRoomBtn = (TextView) findViewById(R.id.create);
+        radioGroup=(RadioGroup) findViewById(R.id.radiogroup);
+        radioButton1=(RadioButton) findViewById(R.id.select1);
+        radioButton2=(RadioButton) findViewById(R.id.select2);
+        radioButton3=(RadioButton) findViewById(R.id.select3);
         //mRoomNoText = (TextView) findViewById(R.id.room_no);
     }
 
     private void setListeners() {
         mSetCoverView.setOnClickListener(clickListener);
         mCreateRoomBtn.setOnClickListener(clickListener);
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i==radioButton1.getId()){
+                    pressSelect=true;
+                }
+                if(i==radioButton2.getId()){
+                    pressSelect=true;
+                }
+                if(i==radioButton2.getId()){
+                    pressSelect=true;
+                }
+            }
+        });
     }
 
     private void setupTitlebar() {
@@ -67,7 +92,11 @@ public class CreateActivity extends AppCompatActivity {
             int id = view.getId();
             if (id == R.id.create) {
                 //创建直播
-                requestCreateRoom();
+                if(!pressSelect || mTitleEt.getText()==null){
+                    Toast.makeText(CreateActivity.this, "直播类别或标题不能为空！", Toast.LENGTH_SHORT).show();
+                }else{
+                    requestCreateRoom();
+                }
             } else if (id == R.id.set_cover) {
                 //选择图片
                 choosePic();

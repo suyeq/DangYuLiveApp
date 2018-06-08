@@ -25,24 +25,24 @@
         android:padding="5dp"
         android:src="@drawable/bottom_close" />
 
-    <ImageView
-        android:id="@+id/gift"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/chat"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/round_bkg_small"
-        android:padding="5dp"
-        android:src="@drawable/icon_gift" />
+    <!--<ImageView-->
+        <!--android:id="@+id/gift"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignTop="@+id/chat"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:background="@drawable/round_bkg_small"-->
+        <!--android:padding="5dp"-->
+        <!--android:src="@drawable/icon_gift" />-->
 
-    <ImageView
-        android:id="@+id/option"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/chat"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/round_bkg_small"
-        android:padding="5dp"
-        android:src="@drawable/icon_op_open" />
+    <!--<ImageView-->
+        <!--android:id="@+id/option"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignTop="@+id/chat"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:background="@drawable/round_bkg_small"-->
+        <!--android:padding="5dp"-->
+        <!--android:src="@drawable/icon_op_open" />-->
 
 </RelativeLayout>
